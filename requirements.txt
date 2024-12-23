@@ -252,13 +252,13 @@ pyjwt==2.9.0
 pympler==1.1 
 pyparsing==3.2.0 
 pysocks==1.7.1 
-python==3.9.19 
-python-daemon==3.0.1 
-python-dateutil==2.9.0.post0 
-python-nvd3==0.15.0 
-python-tzdata==2024.2 
-python-xxhash==3.5.0 
-python_abi==3.9 
+# python==3.9.19 
+# python-daemon==3.0.1 
+# python-dateutil==2.9.0.post0 
+# python-nvd3==0.15.0 
+# python-tzdata==2024.2 
+# python-xxhash==3.5.0 
+# python_abi==3.9 
 pytz==2024.1 
 pytz-deprecation-shim==0.1.0.post0 
 pyyaml==6.0.2 
