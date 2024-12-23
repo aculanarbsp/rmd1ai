@@ -36,80 +36,80 @@ import pickle
 
 # ##############################################################
 
-# # Open 2-year models
+# Open 2-year models
 
-# models_path = "dags/streamlit/pages/models"
+models_path = "dags/streamlit/pages/models"
 
-# with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
-#      data_2yr_rnn = pickle.load(file)
+with open(f"{models_path}/2yr_models_rnn.pkl", "rb") as file:
+     data_2yr_rnn = pickle.load(file)
 
-# with open(f"{models_path}/2YR_models_gru.pkl", "rb") as file:
-#      data_2yr_gru = pickle.load(file)
+with open(f"{models_path}/2yr_models_gru.pkl", "rb") as file:
+     data_2yr_gru = pickle.load(file)
 
-# with open(f"{models_path}/2YR_models_lstm.pkl", "rb") as file:
-#      data_2yr_lstm = pickle.load(file)
+with open(f"{models_path}/2yr_models_lstm.pkl", "rb") as file:
+     data_2yr_lstm = pickle.load(file)
 
-# data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
+data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
 
 # #########################################################
 
-# train_mean = data_2yr['rnn']['scaler_train_mean']
-# train_scale = data_2yr['rnn']['scaler_train_std']
+train_mean = data_2yr['rnn']['scaler_train_mean']
+train_scale = data_2yr['rnn']['scaler_train_std']
 
-# st.write("### Upload data here:")
+st.write("### Upload data here:")
 
-# # Take input data from user
-# uploaded_csv_2yr = st.file_uploader("Input .csv file of 2-year yields here:", type="csv")
+# Take input data from user
+uploaded_csv_2yr = st.file_uploader("Input .csv file of 2-year yields here:", type="csv")
 
-# uploaded_csv_10yr = st.file_uploader("Input .csv file of 10-year yields here:", type="csv")
+uploaded_csv_10yr = st.file_uploader("Input .csv file of 10-year yields here:", type="csv")
 
-# # get the models
+# get the models
 
-# model_rnn = data_2yr_rnn['rnn']['model']
-# model_gru = data_2yr_gru['gru']['model']
-# model_lstm = data_2yr_lstm['lstm']['model']
+model_rnn = data_2yr_rnn['rnn']['model']
+model_gru = data_2yr_gru['gru']['model']
+model_lstm = data_2yr_lstm['lstm']['model']
 
-# # get the transformer
+# get the transformer
 
-# scaler = StandardScaler()
-# # scaler.mean_ = data_2yr_rnn['rnn]['']
-# # scaler.scale_ = test_scale
+scaler = StandardScaler()
+# scaler.mean_ = data_2yr_rnn['rnn]['']
+# scaler.scale_ = test_scale
 
-# # transform the input
+# transform the input
 
-# if uploaded_csv_2yr is not None:
-#     df_2yr = pd.read_csv(uploaded_csv_2yr)
-#     df_2yr['date'] = pd.to_datetime(df_2yr['date'])
-#     df_2yr.index = pd.to_datetime(df_2yr['date'])
-#     df_2yr.drop(columns=['date'], inplace=True)
+if uploaded_csv_2yr is not None:
+    df_2yr = pd.read_csv(uploaded_csv_2yr)
+    df_2yr['date'] = pd.to_datetime(df_2yr['date'])
+    df_2yr.index = pd.to_datetime(df_2yr['date'])
+    df_2yr.drop(columns=['date'], inplace=True)
     
-#     fitted_scaler = scaler.fit(np.array(df_2yr['yield']).reshape(-1,1))
+    fitted_scaler = scaler.fit(np.array(df_2yr['yield']).reshape(-1,1))
     
-#     df_2yr_scaled_ = fitted_scaler.transform(np.array(df_2yr['yield']).reshape(-1,1))
-#     for_input_2yr = df_2yr_scaled_.reshape(1, len(df_2yr), 1)
+    df_2yr_scaled_ = fitted_scaler.transform(np.array(df_2yr['yield']).reshape(-1,1))
+    for_input_2yr = df_2yr_scaled_.reshape(1, len(df_2yr), 1)
 
-#     models = ['rnn', 'gru', 'lstm']
+    models = ['rnn', 'gru', 'lstm']
 
-#     rnn_pred = fitted_scaler.inverse_transform(data_2yr['rnn']['model'].predict(for_input_2yr))
-#     gru_pred = fitted_scaler.inverse_transform(data_2yr['gru']['model'].predict(for_input_2yr))
-#     lstm_pred = fitted_scaler.inverse_transform(data_2yr['lstm']['model'].predict(for_input_2yr))
+    rnn_pred = fitted_scaler.inverse_transform(data_2yr['rnn']['model'].predict(for_input_2yr))
+    gru_pred = fitted_scaler.inverse_transform(data_2yr['gru']['model'].predict(for_input_2yr))
+    lstm_pred = fitted_scaler.inverse_transform(data_2yr['lstm']['model'].predict(for_input_2yr))
 
-#     # st.write(f"RNN predictions: {rnn_pred}")
-#     # st.write(f"GRU predictions: {gru_pred}")
-#     # st.write(f"LSTM predictions: {lstm_pred}")
+    # st.write(f"RNN predictions: {rnn_pred}")
+    # st.write(f"GRU predictions: {gru_pred}")
+    # st.write(f"LSTM predictions: {lstm_pred}")
 
-#     # predictions = [rnn_pred, gru_pred, lstm_pred]
+    # predictions = [rnn_pred, gru_pred, lstm_pred]
 
 
-#     st.write("### Forecast plot (2yr UST):")
-#     plot_forecast(input_dates=df_2yr.index,
-#                   input_data=df_2yr,
-#                   forecast_rnn=rnn_pred,
-#                   forecast_gru=gru_pred,
-#                   forecast_lstm=lstm_pred,
-#                   dataset_="2yr")
+    st.write("### Forecast plot (2yr UST):")
+    plot_forecast(input_dates=df_2yr.index,
+                  input_data=df_2yr,
+                  forecast_rnn=rnn_pred,
+                  forecast_gru=gru_pred,
+                  forecast_lstm=lstm_pred,
+                  dataset_="2yr")
      
     
 
-# if uploaded_csv_10yr is not None:
-#     df_10yr = pd.read_csv(uploaded_csv_10yr)
+if uploaded_csv_10yr is not None:
+    df_10yr = pd.read_csv(uploaded_csv_10yr)
