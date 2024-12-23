@@ -3,3 +3,7 @@ data/raw/*
 
 # Don't ignore the folder itself (use a negation rule)
 !data/raw/
+
+# Ignore .yml files
+environment.yml
+tf-metal-arm64.yml
