@@ -91,7 +91,7 @@ flask-session==0.4.0
 flask-sqlalchemy==2.5.1 
 flask-wtf==1.2.1 
 fonttools==4.55.3 
-freetype==2.12.1 
+# freetype==2.12.1 
 frozenlist==1.5.0 
 fsspec==2024.9.0 
 furl==2.1.2 
