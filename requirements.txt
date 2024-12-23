@@ -144,42 +144,42 @@ lazy-object-proxy==1.10.0
 # libarrow-dataset==16.1.0 
 # libarrow-substrait==16.1.0 
 # libblas==3.9.0 
-libbrotlicommon==1.1.0 
-libbrotlidec==1.1.0 
-libbrotlienc==1.1.0 
-libcblas==3.9.0 
-libcrc32c==1.1.2 
-libcurl==8.8.0 
-libcxx==19.1.6 
-libdeflate==1.18 
-libedit==3.1.20191231 
-libev==4.33 
-libevent==2.1.12 
-libffi==3.4.2 
-libgfortran==5.0.0 
-libgfortran5==13.2.0 
-libgoogle-cloud==2.24.0 
-libgoogle-cloud-storage==2.24.0 
-libgrpc==1.62.2 
-libjpeg-turbo==2.1.5.1 
-liblapack==3.9.0 
-liblzma==5.6.3 
-liblzma-devel==5.6.3 
-libnghttp2==1.58.0 
-libopenblas==0.3.28 
-libparquet==16.1.0 
-libpng==1.6.43 
-libprotobuf==4.25.3 
-libre2-11==2023.09.01 
-libsodium==1.0.20 
-libsqlite==3.46.0 
-libssh2==1.11.0 
-libthrift==0.19.0 
-libtiff==4.5.1 
-libutf8proc==2.8.0 
-libwebp-base==1.4.0 
-libxcb==1.15 
-libzlib==1.2.13 
+# libbrotlicommon==1.1.0 
+# libbrotlidec==1.1.0 
+# libbrotlienc==1.1.0 
+# libcblas==3.9.0 
+# libcrc32c==1.1.2 
+# libcurl==8.8.0 
+# libcxx==19.1.6 
+# libdeflate==1.18 
+# libedit==3.1.20191231 
+# libev==4.33 
+# libevent==2.1.12 
+# libffi==3.4.2 
+# libgfortran==5.0.0 
+# libgfortran5==13.2.0 
+# libgoogle-cloud==2.24.0 
+# libgoogle-cloud-storage==2.24.0 
+# libgrpc==1.62.2 
+# libjpeg-turbo==2.1.5.1 
+# liblapack==3.9.0 
+# liblzma==5.6.3 
+# liblzma-devel==5.6.3 
+# libnghttp2==1.58.0 
+# libopenblas==0.3.28 
+# libparquet==16.1.0 
+# libpng==1.6.43 
+# libprotobuf==4.25.3 
+# libre2-11==2023.09.01 
+# libsodium==1.0.20 
+# libsqlite==3.46.0 
+# libssh2==1.11.0 
+# libthrift==0.19.0 
+# libtiff==4.5.1 
+# libutf8proc==2.8.0 
+# libwebp-base==1.4.0 
+# libxcb==1.15 
+# libzlib==1.2.13 
 limits==3.14.1 
 linkify-it-py==2.0.0 
 llvm-openmp==19.1.6 
