@@ -30,6 +30,17 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.abspath(os.path.join(current_dir, "../../.."))
 sys.path.append(root_dir)
 
+# Get the current directory of the script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+print(current_dir)
+
+# Path to the model file
+model_path = os.path.join(current_dir, "pages/models/2YR_models_rnn.pkl")
+
+# Check if the file exists (optional)
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"File not found: {model_path}")
+
 # from model_functions import SimpleRNN_, GRU_, LSTM_
 # # from functions import SimpleRNN_, GRU_, LSTM_
 
@@ -52,7 +63,7 @@ st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (G
 
 # Open 2-year models
 
-models_path = "dags/streamlit/pages/models"
+# models_path = "dags/streamlit/pages/models"
 
 with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
