@@ -205,7 +205,7 @@ narwhals==1.19.0
 nest-asyncio==1.6.0 
 nltk==3.9.1 
 numpy==1.26.4 
-numpy-base==1.26.4 
+# numpy-base==1.26.4 
 # openjpeg==2.5.0 
 openssl==3.4.0 
 opentelemetry-api==1.26.0 
