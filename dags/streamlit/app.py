@@ -31,6 +31,8 @@ from pathlib import Path
 # Get the user's home directory
 home_dir = Path.home()
 
+st.write(home_dir)
+
 # Construct a path relative to the home directory
 file_path = home_dir / "dags/streamlit/pages/models/2YR_models_rnn.pkl"
 # st.write(file_path)
@@ -60,8 +62,8 @@ st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (G
 
 # models_path = "/pages/models"
 
-with open(f"{file_path}/2YR_models_rnn.pkl", "rb") as file:
-     data_2yr_rnn = pickle.load(file)
+# with open(f"{file_path}/2YR_models_rnn.pkl", "rb") as file:
+#      data_2yr_rnn = pickle.load(file)
 
 # with open(f"{model_path}/2YR_models_gru.pkl", "rb") as file:
 #      data_2yr_gru = pickle.load(file)
