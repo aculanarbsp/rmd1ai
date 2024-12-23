@@ -70,10 +70,10 @@ models_path = "dags/streamlit/pages/models"
 with open(f"{models_path}/2yr_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
 
-with open(f"{models_path}/2YR_models_gru.pkl", "rb") as file:
+with open(f"{models_path}/2yr_models_gru.pkl", "rb") as file:
      data_2yr_gru = pickle.load(file)
 
-with open(f"{models_path}/2YR_models_lstm.pkl", "rb") as file:
+with open(f"{models_path}/2yr_models_lstm.pkl", "rb") as file:
      data_2yr_lstm = pickle.load(file)
 
 data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
