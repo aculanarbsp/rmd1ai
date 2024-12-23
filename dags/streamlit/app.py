@@ -62,7 +62,7 @@ st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (G
 
 # # Open 2-year models
 
-models_path = "./dags/streamlit/pages/models"
+models_path = "/dags/streamlit/pages/models"
 
 with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
