@@ -33,18 +33,8 @@ home_dir = Path.home()
 
 # Construct a path relative to the home directory
 file_path = home_dir / "dags/streamlit/pages/models/2YR_models_rnn.pkl"
-st.write(file_path)
+# st.write(file_path)
 
-# # Get the current directory of the script
-# current_dir = os.path.dirname(os.path.abspath(__file__))
-# print(current_dir)
-
-# # Path to the model file
-# model_path = os.path.join(current_dir, "pages/models/2YR_models_rnn.pkl")
-
-# # Check if the file exists (optional)
-# if not os.path.exists(model_path):
-#     raise FileNotFoundError(f"File not found: {model_path}")
 
 # from model_functions import SimpleRNN_, GRU_, LSTM_
 # # from functions import SimpleRNN_, GRU_, LSTM_
@@ -53,16 +43,16 @@ st.write(file_path)
 # tb._SYMBOLIC_SCOPE.value = True
 
 # Set the page configuration
-# st.set_page_config(page_title="My Streamlit App", page_icon="🌟")
+st.set_page_config(page_title="My Streamlit App", page_icon="🌟")
 
 st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
 
-# with open('dags/streamlit/pages/styles.css') as css: 
-#     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
+with open('dags/streamlit/pages/styles.css') as css: 
+    st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
 
-# st.markdown("# Welcome to RMD1 Machine Learning Portal!")
+st.markdown("# Welcome to RMD1 Machine Learning Portal!")
 
-# st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (GRU), and long-short term memory (LSTM) for bond yiend time series forecast.")
+st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (GRU), and long-short term memory (LSTM) for bond yiend time series forecast.")
 
 # ##############################################################
 
