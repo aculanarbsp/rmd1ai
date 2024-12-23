@@ -244,7 +244,7 @@ psutil==6.1.0
 ptyprocess==0.7.0 
 pure_eval==0.2.3 
 pyarrow==16.1.0 
-pyarrow-core==16.1.0 
+# pyarrow-core==16.1.0 
 pycparser==2.22 
 pydeck==0.7.1 
 pygments==2.18.0 
