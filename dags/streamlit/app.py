@@ -26,9 +26,18 @@ from keras._tf_keras.keras.regularizers import l1, l2
 import sys
 import os
 
-# Get the current directory of the script
-current_dir = os.path.dirname(os.path.abspath(__file__))
-print(current_dir)
+from pathlib import Path
+
+# Get the user's home directory
+home_dir = Path.home()
+
+# Construct a path relative to the home directory
+file_path = home_dir / "dags/streamlit/pages/models/2YR_models_rnn.pkl"
+print(file_path)
+
+# # Get the current directory of the script
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# print(current_dir)
 
 # # Path to the model file
 # model_path = os.path.join(current_dir, "pages/models/2YR_models_rnn.pkl")
