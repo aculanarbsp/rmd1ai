@@ -59,7 +59,7 @@ st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
 
 # # Open 2-year models
 
-models_path = "/mount/src/rmd1ai/dags/streamlit/pages/models"
+models_path = "pages/models"
 
 with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
