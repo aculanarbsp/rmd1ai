@@ -136,7 +136,7 @@ jupyterlab_widgets==3.0.13
 kiwisolver==1.4.7 
 # krb5==1.21.3 
 lazy-object-proxy==1.10.0 
-lcms2==2.15 
+# lcms2==2.15 
 lerc==4.0.0 
 libabseil==20240116.2 
 libarrow==16.1.0 
