@@ -14,7 +14,7 @@ model_ = "rnn"
 params = {
     model_: {
         'model': None,
-        'function': build_model,
+        'function': build_model, 'color': 'blue',
         'l1_reg': None, 'H': None, 'label': model_.upper(),
         'cv_results': {"means_": None, 'stds_': None, 'params_': None}
         }

@@ -3,17 +3,6 @@ import yaml
 with open("environment.yml") as file_handle:
     environment_data = yaml.load(file_handle, Loader=yaml.Loader)
 
-input_string = "aiohappyeyeballs=2.4.4=pyhd8ed1ab_1"
-
-# # Split the string on the '=' character
-# parts = input_string.split('=')
-
-# print(parts)
-# Combine the first two parts to get "aiohappyeyeballs=2.4.4"
-# result = '='.join(parts[:2])
-
-# print(result)  # Output: aiohappyeyeballs=2.4.4
-
 for dependency in environment_data["dependencies"]:
     print(dependency)
 
