@@ -46,7 +46,7 @@ print(current_dir)
 # Set the page configuration
 # st.set_page_config(page_title="My Streamlit App", page_icon="🌟")
 
-# st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
+st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
 
 # with open('dags/streamlit/pages/styles.css') as css: 
 #     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
