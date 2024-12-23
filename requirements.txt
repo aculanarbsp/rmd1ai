@@ -25,19 +25,19 @@ asgiref==3.8.1
 asttokens==3.0.0 
 async-timeout==5.0.1 
 attrs==24.3.0 
-aws-c-auth==0.7.22 
-aws-c-cal==0.6.14 
-aws-c-common==0.9.19 
-aws-c-compression==0.2.18 
-aws-c-event-stream==0.4.2 
-aws-c-http==0.8.1 
-aws-c-io==0.14.8 
-aws-c-mqtt==0.10.4 
-aws-c-s3==0.5.9 
-aws-c-sdkutils==0.1.16 
-aws-checksums==0.1.18 
-aws-crt-cpp==0.26.9 
-aws-sdk-cpp==1.11.329 
+# aws-c-auth==0.7.22 
+# aws-c-cal==0.6.14 
+# aws-c-common==0.9.19 
+# aws-c-compression==0.2.18 
+# aws-c-event-stream==0.4.2 
+# aws-c-http==0.8.1 
+# aws-c-io==0.14.8 
+# aws-c-mqtt==0.10.4 
+# aws-c-s3==0.5.9 
+# aws-c-sdkutils==0.1.16 
+# aws-checksums==0.1.18 
+# aws-crt-cpp==0.26.9 
+# aws-sdk-cpp==1.11.329 
 babel==2.11.0 
 bcrypt==3.2.0 
 blas==1.0 
