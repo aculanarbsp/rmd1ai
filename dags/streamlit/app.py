@@ -33,7 +33,10 @@ home_dir = Path.home()
 
 st.write(home_dir)
 
-st.write(f"Current Working Directory: {os.getcwd()}")
+current_directory = os.getcwd()
+
+st.write(f"Current Working Directory: {current_directory}")
+st.write(f"Files in {os.getcwd()}: {os.listdir(current_directory)}")
 
 # Construct a path relative to the home directory
 file_path = home_dir / "dags/streamlit/pages/models/"
