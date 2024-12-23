@@ -207,16 +207,16 @@ nltk==3.9.1
 numpy==1.26.4 
 # numpy-base==1.26.4 
 # openjpeg==2.5.0 
-openssl==3.4.0 
-opentelemetry-api==1.26.0 
-opentelemetry-exporter-otlp==1.26.0 
-opentelemetry-exporter-otlp-proto-common==1.26.0 
-opentelemetry-exporter-otlp-proto-grpc==1.26.0 
-opentelemetry-exporter-otlp-proto-http==1.26.0 
-opentelemetry-proto==1.26.0 
-opentelemetry-sdk==1.26.0 
-opentelemetry-semantic-conventions==0.47b0 
-orc==2.0.1 
+# openssl==3.4.0 
+# opentelemetry-api==1.26.0 
+# opentelemetry-exporter-otlp==1.26.0 
+# opentelemetry-exporter-otlp-proto-common==1.26.0 
+# opentelemetry-exporter-otlp-proto-grpc==1.26.0 
+# opentelemetry-exporter-otlp-proto-http==1.26.0 
+# opentelemetry-proto==1.26.0 
+# opentelemetry-sdk==1.26.0 
+# opentelemetry-semantic-conventions==0.47b0 
+# orc==2.0.1 
 ordered-set==4.1.0 
 orderedmultidict==1.0.1 
 packaging==23.2 
