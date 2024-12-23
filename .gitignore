@@ -1,0 +1,5 @@
+# Ignore all files in the data/raw folder
+data/raw/*
+
+# Don't ignore the folder itself (use a negation rule)
+!data/raw/
