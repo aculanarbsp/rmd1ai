@@ -40,7 +40,7 @@ attrs==24.3.0
 # aws-sdk-cpp==1.11.329 
 babel==2.11.0 
 bcrypt==3.2.0 
-blas==1.0 
+# blas==1.0 
 blinker==1.9.0 
 brotli==1.1.0 
 brotli-bin==1.1.0 
