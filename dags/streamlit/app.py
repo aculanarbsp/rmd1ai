@@ -45,7 +45,7 @@ file_path = home_dir / "dags/streamlit/pages/models/"
 # tb._SYMBOLIC_SCOPE.value = True
 
 # Set the page configuration
-st.set_page_config(page_title="My Streamlit App", page_icon="🌟")
+# st.set_page_config(page_title="My Streamlit App", page_icon="🌟")
 
 st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
 
