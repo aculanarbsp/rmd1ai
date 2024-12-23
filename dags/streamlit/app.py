@@ -131,7 +131,7 @@ st.markdown(""" <style> .center-text { text-align: center; font-weight: bold; fo
 st.markdown('<p class="center-text">10-year UST models:</p>', unsafe_allow_html=True)
 
 table_models_10yr = pd.DataFrame.from_dict(data_10yr, orient='index')
-table_models_2yr.drop(
+table_models_10yr.drop(
     columns=["model", "function", "label",
              "pred_train", "pred_test", "pred_train_scaled", "MSE_train", 'MSE_test', 'MSE_val',
              "pred_test_scaled", "y_train_scaled", "y_test_scaled", "pred_val",
