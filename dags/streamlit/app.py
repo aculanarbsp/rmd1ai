@@ -59,10 +59,10 @@ st.write(f"Running on Tensorflow version: {tensorflow.__version__}")
 
 # # Open 2-year models
 
-# # models_path = "dags/streamlit/pages/models"
+models_path = "streamlit/pages/models"
 
-# with open(f"{model_path}/2YR_models_rnn.pkl", "rb") as file:
-#      data_2yr_rnn = pickle.load(file)
+with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
+     data_2yr_rnn = pickle.load(file)
 
 # with open(f"{model_path}/2YR_models_gru.pkl", "rb") as file:
 #      data_2yr_gru = pickle.load(file)
