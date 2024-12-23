@@ -28,19 +28,19 @@ import os
 
 from pathlib import Path
 
-# Get the user's home directory
-home_dir = Path.home()
+# # Get the user's home directory
+# home_dir = Path.home()
 
-st.write(home_dir)
+# st.write(home_dir)
 
-current_directory = os.getcwd()
+# current_directory = os.getcwd()
 
-st.write(f"Current Working Directory: {current_directory}")
-st.write(f"Files in {os.getcwd()}: {os.listdir(current_directory)}")
+# st.write(f"Current Working Directory: {current_directory}")
+# st.write(f"Files in {os.getcwd()}: {os.listdir(current_directory)}")
 
-# Construct a path relative to the home directory
-file_path = home_dir / "dags/streamlit/pages/models/"
-# st.write(file_path)
+# # Construct a path relative to the home directory
+# file_path = home_dir / "dags/streamlit/pages/models/"
+# # st.write(file_path)
 
 
 # from model_functions import SimpleRNN_, GRU_, LSTM_
