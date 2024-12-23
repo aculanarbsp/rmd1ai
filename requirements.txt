@@ -297,7 +297,7 @@ tenacity==8.5.0
 text-unidecode==1.3 
 threadpoolctl==3.5.0 
 time-machine==2.16.0 
-tk==8.6.13 
+# tk==8.6.13 
 tokenizers==0.21.0 
 toml==0.10.2 
 tornado==6.4.2 
