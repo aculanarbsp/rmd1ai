@@ -193,7 +193,7 @@ marshmallow-oneofschema==3.0.1
 marshmallow-sqlalchemy==0.26.1 
 matplotlib==3.8.0
 # matplotlib-base==3.8.0
-matplotlib-inline==3.8.0
+# matplotlib-inline==3.8.0
 mdit-py-plugins==0.4.2 
 mdurl==0.1.2 
 methodtools==0.4.7 
