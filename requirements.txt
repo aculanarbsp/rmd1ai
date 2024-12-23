@@ -201,7 +201,7 @@ multidict==6.1.0
 multiprocess==0.70.16 
 munkres==1.1.4 
 narwhals==1.19.0 
-ncurses==6.5 
+# ncurses==6.5 
 nest-asyncio==1.6.0 
 nltk==3.9.1 
 numpy==1.26.4 
