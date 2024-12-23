@@ -26,10 +26,6 @@ from keras._tf_keras.keras.regularizers import l1, l2
 import sys
 import os
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.abspath(os.path.join(current_dir, "../../.."))
-sys.path.append(root_dir)
-
 # Get the current directory of the script
 current_dir = os.path.dirname(os.path.abspath(__file__))
 print(current_dir)
@@ -65,13 +61,13 @@ st.markdown("Make use of recurrent neural network (RNN), gated recurrent unit (G
 
 # models_path = "dags/streamlit/pages/models"
 
-with open(f"{models_path}/2YR_models_rnn.pkl", "rb") as file:
+with open(f"{model_path}/2YR_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
 
-with open(f"{models_path}/2YR_models_gru.pkl", "rb") as file:
+with open(f"{model_path}/2YR_models_gru.pkl", "rb") as file:
      data_2yr_gru = pickle.load(file)
 
-with open(f"{models_path}/2YR_models_lstm.pkl", "rb") as file:
+with open(f"{model_path}/2YR_models_lstm.pkl", "rb") as file:
      data_2yr_lstm = pickle.load(file)
 
 data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
