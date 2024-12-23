@@ -191,7 +191,7 @@ markupsafe==3.0.2
 marshmallow==3.19.0 
 marshmallow-oneofschema==3.0.1 
 marshmallow-sqlalchemy==0.26.1 
-matplotlib==3.10.0
+matplotlib==3.8.0
 matplotlib-base
 matplotlib-inline
 mdit-py-plugins==0.4.2 
