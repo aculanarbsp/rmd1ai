@@ -184,7 +184,7 @@ limits==3.14.1
 linkify-it-py==2.0.0 
 # llvm-openmp==19.1.6 
 lockfile==0.12.2 
-lz4-c==1.9.4 
+# lz4-c==1.9.4 
 mako==1.2.3 
 markdown-it-py==3.0.0 
 markupsafe==3.0.2 
