@@ -33,7 +33,7 @@ home_dir = Path.home()
 
 # Construct a path relative to the home directory
 file_path = home_dir / "dags/streamlit/pages/models/2YR_models_rnn.pkl"
-print(file_path)
+st.write(file_path)
 
 # # Get the current directory of the script
 # current_dir = os.path.dirname(os.path.abspath(__file__))
