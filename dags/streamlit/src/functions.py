@@ -285,4 +285,4 @@ def plot_forecast(input_dates, input_data, forecast_rnn, forecast_gru, forecast_
                        data=buffer_plt,
                        file_name=f"forecast_plot_{date.today()}.png",
                        mime="image/png"
-                       )
+            )
