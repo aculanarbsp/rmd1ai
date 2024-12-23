@@ -70,45 +70,45 @@ models_path = "dags/streamlit/pages/models"
 with open(f"{models_path}/2yr_models_rnn.pkl", "rb") as file:
      data_2yr_rnn = pickle.load(file)
 
-# with open(f"{model_path}/2YR_models_gru.pkl", "rb") as file:
-#      data_2yr_gru = pickle.load(file)
+with open(f"{models_path}/2YR_models_gru.pkl", "rb") as file:
+     data_2yr_gru = pickle.load(file)
 
-# with open(f"{model_path}/2YR_models_lstm.pkl", "rb") as file:
-#      data_2yr_lstm = pickle.load(file)
+with open(f"{models_path}/2YR_models_lstm.pkl", "rb") as file:
+     data_2yr_lstm = pickle.load(file)
 
-# data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
+data_2yr = {**data_2yr_rnn, **data_2yr_gru, **data_2yr_lstm}
 
-# st.markdown("#### Best parameters for each model")
+st.markdown("#### Best parameters for each model")
 
-# st.markdown(""" <style> .center-text { text-align: center; font-weight: bold; font-size: 20px; } </style> """, unsafe_allow_html=True)
-# st.markdown('<p class="center-text">2-year UST models:</p>', unsafe_allow_html=True)
+st.markdown(""" <style> .center-text { text-align: center; font-weight: bold; font-size: 20px; } </style> """, unsafe_allow_html=True)
+st.markdown('<p class="center-text">2-year UST models:</p>', unsafe_allow_html=True)
 
-# table_models_2yr = pd.DataFrame.from_dict(data_2yr, orient='index')
-# table_models_2yr.drop(
-#     columns=["model", "function", "label",
-#              "pred_train", "pred_test", "pred_train_scaled", "MSE_train", 'MSE_test', 'MSE_val',
-#              "pred_test_scaled", "y_train_scaled", "y_test_scaled", "pred_val",
-#              "pred_val_scaled", "y_val_scaled",
-#           #    'scaler_train_mean', 'scaler_train_scale',
-#           #    'scaler_val_mean', 'scaler_val_scale', 'scaler_test_mean', 'scaler_test_scale',
-#              'MSE_train_scaled', 'MSE_val_scaled', 'MSE_test_scaled',
-#           #    'MAE_train_scaled', 'MAE_test_scaled', 'MAE_val_scaled',
-#              'R2_train_scaled', 'R2_test_scaled', 'R2_val_scaled',
-#              'scaler_train_mean', 'scaler_train_std',
-#              'scaler_test_mean', 'scaler_test_std',
-#              'scaler_val_mean', 'scaler_val_std', 'cv_results'
-#              ], 
-#     inplace=True)
-# table_models_2yr['cv_time'] = table_models_2yr['cv_time'].apply(lambda x: (x/60)/60)
-# table_models_2yr['train_time'] = table_models_2yr['train_time'].apply(lambda x: x/60)
-# table_models_2yr.rename(columns={'cv_time': 'Cross-val time (hrs)',
-#                      'train_time': 'Training time (mins)',
-#                      'l1_reg': 'L1 Regularization',
-#                      'H': 'Nodes',
-#                     #  'MSE_train': 'MSE Train',
-#                     #  'MSE_test':'MSE Test',
-#                     #  'MSE_val': 'MSE Val',
-#                      'MAE_train_scaled': 'MAE Train',
-#                      'MAE_val_scaled': 'MAE Val',
-#                      'MAE_test_scaled': 'MAE Test'}, inplace=True)
-# st.table(table_models_2yr)
+table_models_2yr = pd.DataFrame.from_dict(data_2yr, orient='index')
+table_models_2yr.drop(
+    columns=["model", "function", "label",
+             "pred_train", "pred_test", "pred_train_scaled", "MSE_train", 'MSE_test', 'MSE_val',
+             "pred_test_scaled", "y_train_scaled", "y_test_scaled", "pred_val",
+             "pred_val_scaled", "y_val_scaled",
+          #    'scaler_train_mean', 'scaler_train_scale',
+          #    'scaler_val_mean', 'scaler_val_scale', 'scaler_test_mean', 'scaler_test_scale',
+             'MSE_train_scaled', 'MSE_val_scaled', 'MSE_test_scaled',
+          #    'MAE_train_scaled', 'MAE_test_scaled', 'MAE_val_scaled',
+             'R2_train_scaled', 'R2_test_scaled', 'R2_val_scaled',
+             'scaler_train_mean', 'scaler_train_std',
+             'scaler_test_mean', 'scaler_test_std',
+             'scaler_val_mean', 'scaler_val_std', 'cv_results'
+             ], 
+    inplace=True)
+table_models_2yr['cv_time'] = table_models_2yr['cv_time'].apply(lambda x: (x/60)/60)
+table_models_2yr['train_time'] = table_models_2yr['train_time'].apply(lambda x: x/60)
+table_models_2yr.rename(columns={'cv_time': 'Cross-val time (hrs)',
+                     'train_time': 'Training time (mins)',
+                     'l1_reg': 'L1 Regularization',
+                     'H': 'Nodes',
+                    #  'MSE_train': 'MSE Train',
+                    #  'MSE_test':'MSE Test',
+                    #  'MSE_val': 'MSE Val',
+                     'MAE_train_scaled': 'MAE Train',
+                     'MAE_val_scaled': 'MAE Val',
+                     'MAE_test_scaled': 'MAE Test'}, inplace=True)
+st.table(table_models_2yr)
