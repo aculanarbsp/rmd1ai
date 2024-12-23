@@ -139,10 +139,10 @@ lazy-object-proxy==1.10.0
 # lcms2==2.15 
 # lerc==4.0.0 
 # libabseil==20240116.2 
-libarrow==16.1.0 
-libarrow-acero==16.1.0 
-libarrow-dataset==16.1.0 
-libarrow-substrait==16.1.0 
+# libarrow==16.1.0 
+# libarrow-acero==16.1.0 
+# libarrow-dataset==16.1.0 
+# libarrow-substrait==16.1.0 
 libblas==3.9.0 
 libbrotlicommon==1.1.0 
 libbrotlidec==1.1.0 
