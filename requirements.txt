@@ -263,7 +263,7 @@ pytz==2024.1
 pytz-deprecation-shim==0.1.0.post0 
 pyyaml==6.0.2 
 pyzmq==26.2.0 
-re2==2023.09.01 
+# re2==2023.09.01 
 readline==8.2 
 referencing==0.35.1 
 regex==2024.11.6 
