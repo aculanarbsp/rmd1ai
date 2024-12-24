@@ -43,7 +43,7 @@ def crossval_model(es, params, params_grid, dataset_, model, batch_size, max_epo
 
     pass
 
-def train_model(dataset_, model_):
+def task_train(dataset_, model_):
     pass
 
 with DAG(
@@ -53,4 +53,23 @@ with DAG(
     schedule_interval='@daily'
 ) as dag:
     task_ETL_2yr = PythonOperator()
+    task_ETL10yr = PythonOperator()
+
+    task_cv_2yr_rnn = PythonOperator()
+    task_cv_2yr_gru = PythonOperator()
+    task_cv_2yr_lstm = PythonOperator()
+
+    task_cv_10yr_rnn = PythonOperator()
+    task_cv_10yr_gru = PythonOperator()
+    task_cv_2yr_lstm = PythonOperator()
+
+    task_train_2yr_rnn = PythonOperator()
+    task_train_2yr_gru = PythonOperator()
+    task_train_2yr_lstm = PythonOperator()
+
+    task_train_10yr_rnn = PythonOperator()
+    task_train_10yr_gru = PythonOperator()
+    task_train_10yr_lstm = PythonOperator()
+
+    task_ETL_2yr, task_ETL10yr > task_cv_2yr_rnn, task_cv_2yr_gru, task_cv_2yr_lstm > task_cv_10yr_rnn, task_cv_10yr_gru, task_train_10yr_lstm > task_train_2yr_rnn, task_train_2yr_gru, task_train_2yr_lstm, task_train_10yr_rnn, task_train_10yr_gru, task_train_10yr_lstm
 
