@@ -79,5 +79,5 @@ with DAG(
     task_train_10yr_lstm = PythonOperator()
 
     ########## Sequence of tasks for Apache Airflow to execute
-    task_ETL_2yr, task_ETL10yr > task_cv_2yr_rnn, task_cv_2yr_gru, task_cv_2yr_lstm > task_cv_10yr_rnn, task_cv_10yr_gru, task_train_10yr_lstm > task_train_2yr_rnn, task_train_2yr_gru, task_train_2yr_lstm, task_train_10yr_rnn, task_train_10yr_gru, task_train_10yr_lstm
+    task_ETL_2yr, task_ETL10yr >> task_cv_2yr_rnn, task_cv_2yr_gru, task_cv_2yr_lstm >> task_cv_10yr_rnn, task_cv_10yr_gru, task_train_10yr_lstm >> task_train_2yr_rnn, task_train_2yr_gru, task_train_2yr_lstm, task_train_10yr_rnn, task_train_10yr_gru, task_train_10yr_lstm
 
