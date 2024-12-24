@@ -52,9 +52,15 @@ with DAG(
     start_date = datetime(year=2024, month=12, day=23),
     schedule_interval='@daily'
 ) as dag:
+    
+    ########## ETL section
+
     task_ETL_2yr = PythonOperator()
     task_ETL10yr = PythonOperator()
 
+    ########## Model selection
+
+    # Cross-validation
     task_cv_2yr_rnn = PythonOperator()
     task_cv_2yr_gru = PythonOperator()
     task_cv_2yr_lstm = PythonOperator()
@@ -63,6 +69,7 @@ with DAG(
     task_cv_10yr_gru = PythonOperator()
     task_cv_2yr_lstm = PythonOperator()
 
+    # Training
     task_train_2yr_rnn = PythonOperator()
     task_train_2yr_gru = PythonOperator()
     task_train_2yr_lstm = PythonOperator()
@@ -71,5 +78,6 @@ with DAG(
     task_train_10yr_gru = PythonOperator()
     task_train_10yr_lstm = PythonOperator()
 
+    ########## Sequence of tasks for Apache Airflow to execute
     task_ETL_2yr, task_ETL10yr > task_cv_2yr_rnn, task_cv_2yr_gru, task_cv_2yr_lstm > task_cv_10yr_rnn, task_cv_10yr_gru, task_train_10yr_lstm > task_train_2yr_rnn, task_train_2yr_gru, task_train_2yr_lstm, task_train_10yr_rnn, task_train_10yr_gru, task_train_10yr_lstm
 
