@@ -31,9 +31,7 @@ def ETL_process(dataset, train_split, val_split, forecast_horizon):
                                  val_split=val_split,
                                  forecast_horizon=forecast_horizon)
 
-    pass
-
-def crossval_model(es, params, params_grid, dataset_, model, batch_size, max_epochs, n_steps, forecast_horizon):
+def crossval_model(es, params, dataset_, model, batch_size, max_epochs, n_steps, forecast_horizon):
 
     # Create a dictionary
     params_ = {
@@ -53,15 +51,18 @@ def crossval_model(es, params, params_grid, dataset_, model, batch_size, max_epo
         forecast_horizon=forecast_horizon
         )
     
-    modeling.cross_validate(
+    # modeling.cross_validate(
+    #     params=params,
+    #     param_grid=params_grid,
+    #     es=es,
+    #     dataset=dataset_
+    #     )
+    
+    modeling.cross_validate_bayesian(
         params=params,
-        param_grid=params_grid,
         es=es,
         dataset=dataset_
         )
-
-    # make sure cross_validate returns an updated params
-    return params
 
 def task_train(dataset_, model_):
     pass

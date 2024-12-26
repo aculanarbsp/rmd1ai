@@ -10,7 +10,7 @@ import time
 start_time = time.time()
 
 dataset_ = "2yr"
-model_ = "lstm"
+model_ = "gru"
 params = {
     model_: {
         'model': None, # will eventually get a keras model instance after running modeling.cross_val 
@@ -59,14 +59,14 @@ modeling = Modeling(
     forecast_horizon=forecast_horizon
     )
 
-modeling.cross_validate(
-    params=params,
-    param_grid=param_grid,
-    dataset=dataset_,
-    es=es
-    )
+# modeling.cross_validate(
+#     params=params,
+#     param_grid=param_grid,
+#     dataset=dataset_,
+#     es=es
+#     )
 
-modeling.cross_validate_bayes(
+modeling.cross_validate_bayesian(
     params=params, 
     es=es, 
     dataset=dataset_
@@ -75,7 +75,8 @@ modeling.cross_validate_bayes(
 modeling.train(
     es=es, 
     dataset_=dataset_,
-    model_ = model_
+    model_ = model_,
+    bayes=True
     )
 
 end_time = time.time()

@@ -160,13 +160,18 @@ def cross_val(params, batch_size, max_epochs, x_train_, y_train_, es, n_steps, n
         params[key]['cv_time'] = end_time_cv - start_time_cv
 
 def cross_val_bayesian(params, batch_size, max_epochs, x_train_, y_train_, es, n_steps, n_steps_ahead):
-    n_units = [5, 10, 20, 25, 30]
-    l1_reg = [0.001, 0.01, 0.1]
+    # n_units = [5, 10, 20, 25, 30]
+    # l1_reg = [0.001, 0.01, 0.1]
     seed = 0  # You can adjust the seed value if necessary
     
     # A dictionary containing a list of values to be iterated through
     # for each parameter of the model included in the search
-    param_grid = {'n_units': n_units, 'l1_reg': l1_reg}
+    # param_grid = {'n_units': n_units, 'l1_reg': l1_reg}
+
+    n_units = Integer(1,30)
+    l1_reg = Real(0.001, 0.1)
+
+    search_space = {'n_units': n_units, 'l1_reg': l1_reg}
     
     # A grid search is performed for each of the models
     for key in params.keys():
@@ -207,9 +212,9 @@ def cross_val_bayesian(params, batch_size, max_epochs, x_train_, y_train_, es, n
         )
         
         # Perform Grid Search
-        grid = GridSearchCV(
+        grid = BayesSearchCV(
             estimator=model,
-            param_grid=param_grid, 
+            search_spaces=search_space, 
             cv=TimeSeriesSplit(n_splits=4),
             verbose=2
         )

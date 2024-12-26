@@ -74,7 +74,7 @@ class Modeling:
             elif key == 'gru':
                 model = KerasRegressor(
                             model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
+                                model_='gru', neurons=n_units, 
                                 l1_reg=l1_reg, seed=seed, 
                                 n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
                                 ),
@@ -88,7 +88,7 @@ class Modeling:
             elif key == 'lstm':
                 model = KerasRegressor(
                             model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
+                                model_='lstm', neurons=n_units, 
                                 l1_reg=l1_reg, seed=seed, 
                                 n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
                                 ),
@@ -136,11 +136,15 @@ class Modeling:
             with open(f'data/processed/{key}_{dataset}_fh{self.forecast_horizon}.pickle', 'wb') as handle:
                 pickle.dump(params, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    def train(self, es: EarlyStopping, dataset_: str, model_: str):
+    def train(self, es: EarlyStopping, dataset_: str, model_: str, bayes: bool = False):
 
         # read params:
 
-        with open(f'data/processed/{model_}_{dataset_}_fh{self.forecast_horizon}.pickle', 'rb') as handle:
+        if bayes==False:
+            with open(f'data/processed/{model_}_{dataset_}_fh{self.forecast_horizon}.pickle', 'rb') as handle:
+                params = pickle.load(handle)
+        else:
+            with open(f'data/processed/{model_}_{dataset_}_fh{self.forecast_horizon}_bayes.pickle', 'rb') as handle:
                 params = pickle.load(handle)
 
         for key in params.keys():
@@ -242,8 +246,8 @@ class Modeling:
         # n_units = param_grid.get("n_units", [])
         # l1_reg = param_grid.get("l1_reg", [])
 
-        n_units = Integer(1,30)
-        l1_reg = Real(0.001, 0.1)
+        n_units = [5,10,15,20]
+        l1_reg = [0.1, 0.01, 0.001, 0.0001]
 
         search_space = {'n_units': n_units, 'l1_reg': l1_reg}
         # set seed as 0 for reproducibility of results
@@ -255,10 +259,9 @@ class Modeling:
             # start recording the time
             start_time_cv = time.time()
 
-            if key == 'rnn':
-                model = KerasRegressor(
+            model = KerasRegressor(
                             model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
+                                model_=key, neurons=n_units, 
                                 l1_reg=l1_reg, seed=seed, 
                                 n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
                                 ),
@@ -266,41 +269,13 @@ class Modeling:
                             n_units=n_units,
                             epochs=self.max_epochs, 
                             batch_size=self.batch_size,
-                            verbose=2
-                        )
-
-            elif key == 'gru':
-                model = KerasRegressor(
-                            model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
-                                l1_reg=l1_reg, seed=seed, 
-                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
-                                ),
-                            l1_reg=l1_reg,
-                            n_units=n_units,
-                            epochs=self.max_epochs, 
-                            batch_size=self.batch_size,
-                            verbose=2
-                        )
-
-            elif key == 'lstm':
-                model = KerasRegressor(
-                            model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
-                                l1_reg=l1_reg, seed=seed, 
-                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
-                                ),
-                            l1_reg=l1_reg,
-                            n_units=n_units,
-                            epochs=self.max_epochs, 
-                            batch_size=self.batch_size,
-                            verbose=2
+                            verbose=0
                         )
 
             # perform grid search
             grid = BayesSearchCV(
                         estimator=model,
-                        param_grid=search_space, 
+                        search_spaces=search_space, 
                         cv=TimeSeriesSplit(n_splits=4),
                         verbose=2
                         )

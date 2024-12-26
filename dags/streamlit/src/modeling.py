@@ -255,38 +255,9 @@ class Modeling:
             # start recording the time
             start_time_cv = time.time()
 
-            if key == 'rnn':
-                model = KerasRegressor(
+            model = KerasRegressor(
                             model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
-                                l1_reg=l1_reg, seed=seed, 
-                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
-                                ),
-                            l1_reg=l1_reg,
-                            n_units=n_units,
-                            epochs=self.max_epochs, 
-                            batch_size=self.batch_size,
-                            verbose=2
-                        )
-
-            elif key == 'gru':
-                model = KerasRegressor(
-                            model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
-                                l1_reg=l1_reg, seed=seed, 
-                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
-                                ),
-                            l1_reg=l1_reg,
-                            n_units=n_units,
-                            epochs=self.max_epochs, 
-                            batch_size=self.batch_size,
-                            verbose=2
-                        )
-
-            elif key == 'lstm':
-                model = KerasRegressor(
-                            model = lambda n_units, l1_reg: build_model(
-                                model_='rnn', neurons=n_units, 
+                                model_=key, neurons=n_units, 
                                 l1_reg=l1_reg, seed=seed, 
                                 n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
                                 ),
