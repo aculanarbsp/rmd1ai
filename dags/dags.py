@@ -10,7 +10,7 @@ from src.modeling import Modeling
 from src.model_functions import build_model
 
 import os
-
+from skopt import BayesSearchCV
 # os.environ[] = None
 
 default_args = {

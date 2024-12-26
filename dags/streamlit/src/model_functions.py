@@ -12,6 +12,8 @@ import time
 from sklearn.model_selection import TimeSeriesSplit, GridSearchCV
 from scikeras.wrappers import KerasRegressor
 # from src.model_functions import build_model
+from skopt import BayesSearchCV
+from skopt.space import Real, Integer
 
 import numpy as np
 
@@ -121,6 +123,88 @@ def cross_val(params, batch_size, max_epochs, x_train_, y_train_, es, n_steps, n
         
         elif key == 'lstm':
             return None
+        
+        # Perform Grid Search
+        grid = GridSearchCV(
+            estimator=model,
+            param_grid=param_grid, 
+            cv=TimeSeriesSplit(n_splits=4),
+            verbose=2
+        )
+        
+        grid_result = grid.fit(
+            x_train_,
+            y_train_,
+            callbacks=[es]
+        )
+        
+        print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+        
+        # Add end time
+        end_time_cv = time.time()
+        
+        # Extract results
+        means_ = grid_result.cv_results_['mean_test_score']
+        stds_ = grid_result.cv_results_['std_test_score']
+        params_ = grid_result.cv_results_['params']
+        for mean, stdev, param_ in zip(means_, stds_, params_):
+            print("%f (%f) with %r" % (mean, stdev, param_))
+            
+        # Save the results in the params dictionary
+        params[key]['cv_results']['means_'] = means_
+        params[key]['cv_results']['stds_'] = stds_
+        params[key]['cv_results']['params_'] = params_
+
+        params[key]['H'] = grid_result.best_params_['n_units']
+        params[key]['l1_reg'] = grid_result.best_params_['l1_reg']
+        params[key]['cv_time'] = end_time_cv - start_time_cv
+
+def cross_val_bayesian(params, batch_size, max_epochs, x_train_, y_train_, es, n_steps, n_steps_ahead):
+    n_units = [5, 10, 20, 25, 30]
+    l1_reg = [0.001, 0.01, 0.1]
+    seed = 0  # You can adjust the seed value if necessary
+    
+    # A dictionary containing a list of values to be iterated through
+    # for each parameter of the model included in the search
+    param_grid = {'n_units': n_units, 'l1_reg': l1_reg}
+    
+    # A grid search is performed for each of the models
+    for key in params.keys():
+        print('Performing cross-validation. Model:', key)
+        print(f'Training on a dataset of length {len(x_train_)}')
+        
+        # add start time
+        start_time_cv = time.time()
+        
+        if key == 'rnn':
+            model = KerasRegressor(
+            model=build_model(model_='rnn', neurons=n_units, l1_reg=l1_reg, seed=seed, n_steps=n_steps, n_steps_ahead=n_steps_ahead),
+            l1_reg=l1_reg,
+            n_units=n_units,
+            epochs=max_epochs, 
+            batch_size=batch_size,
+            verbose=2
+        )
+            
+        elif key == 'gru':
+            model = KerasRegressor(
+            model=build_model(model_='gru', neurons=n_units, l1_reg=l1_reg, seed=seed, n_steps=n_steps, n_steps_ahead=n_steps_ahead),
+            l1_reg=l1_reg,
+            n_units=n_units,
+            epochs=max_epochs, 
+            batch_size=batch_size,
+            verbose=2
+        )
+        
+        elif key == 'lstm':
+            model = KerasRegressor(
+            model=build_model(model_='lstm', neurons=n_units, l1_reg=l1_reg, seed=seed, n_steps=n_steps, n_steps_ahead=n_steps_ahead),
+            l1_reg=l1_reg,
+            n_units=n_units,
+            epochs=max_epochs, 
+            batch_size=batch_size,
+            verbose=2
+        )
         
         # Perform Grid Search
         grid = GridSearchCV(

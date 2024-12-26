@@ -20,6 +20,8 @@ from keras._tf_keras.keras.callbacks import EarlyStopping
 from scikeras.wrappers import KerasRegressor
 
 from src.model_functions import build_model
+from skopt import BayesSearchCV
+from skopt.space import Integer, Real
 
 import pickle
 from src.ETL import Extract, Transform, Load
@@ -227,3 +229,107 @@ class Modeling:
             with open(f'dags/streamlit/pages/models/{dataset_}_models_{key}.pkl', 'wb') as handle:
                 pickle.dump(params, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+    def cross_validate_bayesian(self, params: dict, es: EarlyStopping, dataset: str):
+        load = Load(dataset_=dataset)
+        train_test_val_dict = load.load_data()
+
+        # Get the training data for cross-validation
+        # The training data is already scaled and reformatted for input in nn models
+        x_train_ = train_test_val_dict['train']['X_scaled']
+        y_train_ = train_test_val_dict['train']['y_scaled']
+
+        # Get the values from params
+        # n_units = param_grid.get("n_units", [])
+        # l1_reg = param_grid.get("l1_reg", [])
+
+        n_units = Integer(1,30)
+        l1_reg = Real(0.001, 0.1)
+
+        search_space = {'n_units': n_units, 'l1_reg': l1_reg}
+        # set seed as 0 for reproducibility of results
+        seed = 0
+        
+        for key in params.keys():
+            print('Performing cross-validation. Model:', key)
+
+            # start recording the time
+            start_time_cv = time.time()
+
+            if key == 'rnn':
+                model = KerasRegressor(
+                            model = lambda n_units, l1_reg: build_model(
+                                model_='rnn', neurons=n_units, 
+                                l1_reg=l1_reg, seed=seed, 
+                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
+                                ),
+                            l1_reg=l1_reg,
+                            n_units=n_units,
+                            epochs=self.max_epochs, 
+                            batch_size=self.batch_size,
+                            verbose=2
+                        )
+
+            elif key == 'gru':
+                model = KerasRegressor(
+                            model = lambda n_units, l1_reg: build_model(
+                                model_='rnn', neurons=n_units, 
+                                l1_reg=l1_reg, seed=seed, 
+                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
+                                ),
+                            l1_reg=l1_reg,
+                            n_units=n_units,
+                            epochs=self.max_epochs, 
+                            batch_size=self.batch_size,
+                            verbose=2
+                        )
+
+            elif key == 'lstm':
+                model = KerasRegressor(
+                            model = lambda n_units, l1_reg: build_model(
+                                model_='rnn', neurons=n_units, 
+                                l1_reg=l1_reg, seed=seed, 
+                                n_steps=self.n_steps, n_steps_ahead=self.forecast_horizon
+                                ),
+                            l1_reg=l1_reg,
+                            n_units=n_units,
+                            epochs=self.max_epochs, 
+                            batch_size=self.batch_size,
+                            verbose=2
+                        )
+
+            # perform grid search
+            grid = BayesSearchCV(
+                        estimator=model,
+                        param_grid=search_space, 
+                        cv=TimeSeriesSplit(n_splits=4),
+                        verbose=2
+                        )
+            grid_result = grid.fit(
+                x_train_,y_train_, callbacks=[es]
+                        )
+            print(
+                "Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_)
+                )
+            # Add end time
+            end_time_cv = time.time()
+        
+            # Extract results
+            means_ = grid_result.cv_results_['mean_test_score']
+            stds_ = grid_result.cv_results_['std_test_score']
+            params_ = grid_result.cv_results_['params']
+            for mean, stdev, param_ in zip(means_, stds_, params_):
+                print("%f (%f) with %r" % (mean, stdev, param_))
+                
+            # Save the results in the params dictionary
+            params[key]['cv_results']['means_'] = means_
+            params[key]['cv_results']['stds_'] = stds_
+            params[key]['cv_results']['params_'] = params_
+
+            # record the n_units and l1_reg for the best model and the time took for cross-validating
+            params[key]['H'] = grid_result.best_params_['n_units']
+            params[key]['l1_reg'] = grid_result.best_params_['l1_reg']
+            params[key]['cv_time'] = end_time_cv - start_time_cv # records the 
+
+            # save params
+            with open(f'data/processed/{key}_{dataset}_fh{self.forecast_horizon}_bayes.pickle', 'wb') as handle:
+                pickle.dump(params, handle, protocol=pickle.HIGHEST_PROTOCOL)
