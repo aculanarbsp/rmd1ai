@@ -7,12 +7,21 @@ from datetime import datetime, timedelta
 from src.ETL import Extract, Transform, Load
 from src.modeling import Modeling
 
+from src.model_functions import build_model
+
+import os
+
+# os.environ[] = None
+
 default_args = {
     'retries': 5,
-    'retry_delay': timedelta(minutes=2)
+    'email': ['aculanar@bsp.gov.ph'],
+    'retry_delay': timedelta(minutes=2),
+    'email_on_failure': True,
+    'email_on_retry': False
 }
 
-def ETL_data(dataset, train_split, val_split, forecast_horizon):
+def ETL_process(dataset, train_split, val_split, forecast_horizon):
 
     # Instantiate a Transform class
 
@@ -25,6 +34,16 @@ def ETL_data(dataset, train_split, val_split, forecast_horizon):
     pass
 
 def crossval_model(es, params, params_grid, dataset_, model, batch_size, max_epochs, n_steps, forecast_horizon):
+
+    # Create a dictionary
+    params_ = {
+        model: {
+        'model': None,
+        'function': build_model, 'color': 'blue',
+        'l1_reg': None, 'H': None, 'label': model.upper(),
+        'cv_results': {"means_": None, 'stds_': None, 'params_': None}
+        }
+    }
 
     # Instantiate a modeling class
     modeling = Modeling(
@@ -41,7 +60,8 @@ def crossval_model(es, params, params_grid, dataset_, model, batch_size, max_epo
         dataset=dataset_
         )
 
-    pass
+    # make sure cross_validate returns an updated params
+    return params
 
 def task_train(dataset_, model_):
     pass
@@ -55,8 +75,16 @@ with DAG(
     
     ########## ETL section
 
-    task_ETL_2yr = PythonOperator()
-    task_ETL10yr = PythonOperator()
+    task_ETL_2yr = PythonOperator(
+        task_id = 'task_ETL_2yr',
+        python_callable=ETL_process,
+        op_kwargs={'dataset': '2yr', 'train_split': None, 'val_split': None, "forecast_horizon": None}
+    )
+    task_ETL10yr = PythonOperator(
+        task_id = 'task_ETL_2yr',
+        python_callable=ETL_process,
+        op_kwargs={'dataset': '10yr', 'train_split': None, 'val_split': None, "forecast_horizon": None}
+    )
 
     ########## Model selection
 
